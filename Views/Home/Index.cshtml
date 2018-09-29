@@ -1,5 +1,35 @@
-﻿@{ 
-    Layout = null;
+﻿@model IEnumerable<Fiap01.Models.Pergunta>
+
+@{ 
+    Layout = "_LayoutB";
 }
-<h1>Home</h1>
-<p> Twitter @@joaoRoberto </p>
+
+<div style="width: 100%">
+    @foreach (var item in Model)
+    {
+        <table style="width: 100px;margin:0 auto;display: block; margin-top: 50px;">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Autor</td>
+                    <td>Descricao</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Autor</td>
+                    <td>@item.Descricao</td>
+                </tr>
+            </tbody>
+        </table>
+    }
+</div>
+
+@*<h1>@ViewBag.Nome</h1>
+<h1>@ViewData["NomeDoAluno"]</h1>
+<p> Twitter @@igor </p>
+
+<p>@Model.Id</p>
+<p>@Model.Descricao</p>
+<p>@Model.Autor</p>*@

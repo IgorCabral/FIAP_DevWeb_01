@@ -10,7 +10,7 @@ namespace Fiap01.Controllers
     {
         public IActionResult Index(string categoria, string topico)
         {
-            return View();
+            return View(); 
         }
     }
 }
