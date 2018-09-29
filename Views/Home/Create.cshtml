@@ -2,18 +2,32 @@
 @{
     Layout = "_LayoutB";
 }
-<form action="/home/create" method="post">
-    @Html.EditorFor(a => a.Descricao)
-    @Html.ValidationMessageFor(a => a.Descricao)
+<form action="/home/create" method="post" class="container">
+    <div class="row">
+        <div class="col-12">
+            @Html.LabelFor(x => x.Descricao)<br />
+            @Html.EditorFor(a => a.Descricao, "", new { @class = "form-control" })
+            <br/>
+            @Html.ValidationMessageFor(a => a.Descricao, null, new { @class = "label text-danger" })
+        </div>
+        <div class="col-12">
+            @Html.LabelFor(x => x.Autor)<br />
+            @Html.EditorFor(x => x.Autor)
+            <br />
+            @Html.ValidationMessageFor(a => a.Autor, null, new { @class = "label text-danger" })
+        </div>
+    </div>
+                                <div class="row mt-2">
+                                    <div class="offset-2 col-12">
+                                        <input type="submit" value="Salvar" class="btn btn-info" />
+                                    </div>
+                                </div>
     <br />
-    @Html.EditorFor(x => x.Autor)
-    @Html.ValidationMessageFor(a => a.Autor)
-
-    <input type="submit" value="Salvar" />
     <br />
     <br />
-    <br />
-    @Html.ValidationSummary()
+    <div class="alert alert-danger">
+        @Html.ValidationSummary()
+    </div>
 
 </form>
 
