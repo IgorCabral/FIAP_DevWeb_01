@@ -1,6 +1,8 @@
 ﻿using Fiap01.Data;
+using Fiap01.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -19,18 +21,43 @@ namespace Fiap01
         }
         public void Configure( IApplicationBuilder app, IHostingEnvironment env)
         {
-            if(env.IsDevelopment())
+
+
+            #region Commentado
+            //app.Use((context, next) =>
+            //{
+            //    context.Response.Headers.Add("X-teste", "headerteste");
+            //    return next();
+            //});
+            //app.Use(async (context, next) =>
+            //{
+            //    var teste = 123;
+            //    await next.Invoke();
+            //    var teste2 = 1234;
+            //    //await context.Response.WriteAsync("teste"); // <-- Más Práticas
+            //});
+            //app.Run(async (context) =>
+            //{
+            //    await context.Response.WriteAsync("boa noite");
+            //});
+            #endregion
+
+            if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
 
-            app.UseStaticFiles();            
+            app.UseStaticFiles();
+
+            //app.UseMiddleware<LogMiddleware>(); 
+            app.UseMeuLogoPreza();
 
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                    name: "default",
-                   template: "{controller}/{action}/{id?}"                   
+                   template: "{controller}/{action}/{id?}"
                    );
 
+                #region Aula 01 - 
                 //routes.MapRoute(
                 //    name: "autor",
                 //    template: "autor/{nome}",
@@ -48,9 +75,8 @@ namespace Fiap01
                 //  template: "{categoria}/{topico}",
                 //  defaults: new { controller = "Topico", action = "Index" }
                 //  );
-
-
-            }); 
+                #endregion
+            });            
         }
     }
 
